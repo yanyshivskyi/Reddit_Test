@@ -1,8 +1,10 @@
 package com.example.testproject
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 
 class RedditPostAdapter: RecyclerView.Adapter<RedditPostViewHolder>() {
@@ -18,8 +20,10 @@ class RedditPostAdapter: RecyclerView.Adapter<RedditPostViewHolder>() {
         return RedditPostViewHolder(itemView)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RedditPostViewHolder, position: Int) {
         holder.bind(postlist[position])
+
     }
 
     override fun getItemCount() = postlist.size

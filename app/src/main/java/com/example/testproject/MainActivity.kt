@@ -1,8 +1,11 @@
 package com.example.testproject
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testproject.Reddit_Json.RedditClass
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initRecycleView()
+
 
         val serviseGenerator = ServiceGenerator.buildService(ApiServise::class.java)
         val call = serviseGenerator.getPosts()
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                                 response.body()?.data?.children?.get(i)?.data?.num_comments,
                                 response.body()?.data?.children?.get(i)?.data?.permalink))
                         }
+
                     }
                }
 
@@ -46,6 +51,8 @@ class MainActivity : AppCompatActivity() {
                 }
             })
     }
+
+
 
     private fun initRecycleView(){
         redditPostAdapter = RedditPostAdapter()

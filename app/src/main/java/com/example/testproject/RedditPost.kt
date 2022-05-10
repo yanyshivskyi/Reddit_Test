@@ -19,7 +19,8 @@ class RedditPost(author:String?, dateCreate:Double?, img:String?,
         else this.author=""
 
         if (dateCreate!= null) {
-            var temp:Long = (Instant.now().epochSecond - dateCreate.toLong())/3600
+            var temp:Long = Instant.now().epochSecond - dateCreate.toLong()
+            temp=(temp+1800-1)/3600
             if (!temp.equals(0L)) this.dateCreate="$temp hours ago"
             else this.dateCreate="<1 hours ago"
         } else this.dateCreate=""
