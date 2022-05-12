@@ -1,5 +1,6 @@
 package com.example.testproject
 
+import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +8,13 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 
-class RedditPostAdapter: RecyclerView.Adapter<RedditPostViewHolder>() {
+class RedditPostAdapter(context: Context): RecyclerView.Adapter<RedditPostViewHolder>() {
 
     private val postlist = mutableListOf<RedditPost>()
+    private var after:String="";
+    private var before:String="";
+    private var context:Context?=context;
+
     fun addPost(redditPost: RedditPost){
         postlist.add(redditPost)
         notifyDataSetChanged()
@@ -22,10 +27,31 @@ class RedditPostAdapter: RecyclerView.Adapter<RedditPostViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RedditPostViewHolder, position: Int) {
-        holder.bind(postlist[position])
+        holder.bind(postlist[position], context!!)
 
     }
 
+    fun dropList(){
+        postlist.clear()
+    }
+
     override fun getItemCount() = postlist.size
+
+    fun setAfter(after: String){
+        this.after=after
+    }
+
+    fun setBefore(before: String){
+        this.before=before
+    }
+
+    fun getAfter(): String{
+        return after
+    }
+
+    fun getBefore(): String{
+        return before
+    }
+
 
 }

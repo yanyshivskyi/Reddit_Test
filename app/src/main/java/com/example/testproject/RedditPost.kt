@@ -5,14 +5,16 @@ import androidx.annotation.RequiresApi
 import java.time.Instant
 
 @RequiresApi(Build.VERSION_CODES.O)
-class RedditPost(author:String?, dateCreate:Double?, img:String?,
-                 descript:String?, count_com:Int?, str:String?) {
+class RedditPost(author:String?, dateCreate:Double?, img:String?, url:String,
+                 descript:String?, count_com:Int?, str:String?, is_Video:String) {
     val author: String
     val dateCreate: String
     val img: String
+    val url: String
     val descript: String
     val count_com: String
     val str: String
+    val is_Video:Boolean
 
     init{
         if (author!= null) this.author=author
@@ -28,6 +30,9 @@ class RedditPost(author:String?, dateCreate:Double?, img:String?,
         if(img!=null) this.img = img
         else this.img=""
 
+        if(url!=null) this.url = url
+        else this.url=""
+
         if(descript!=null) this.descript=descript
         else this.descript=""
 
@@ -36,6 +41,9 @@ class RedditPost(author:String?, dateCreate:Double?, img:String?,
 
         if (str!= null) this.str="https://www.reddit.com$str"
         else this.str=""
+
+        if (is_Video.equals("false")) this.is_Video=false
+        else this.is_Video=true
     }
 }
 
