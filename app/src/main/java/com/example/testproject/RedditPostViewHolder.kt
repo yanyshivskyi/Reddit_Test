@@ -37,10 +37,13 @@ class RedditPostViewHolder(itemView: View?): RecyclerView.ViewHolder(itemView!!)
                     HtmlCompat.FROM_HTML_MODE_LEGACY
                 )
 
-                binding.button.isVisible=!is_Video
+                if(is_Video!=false) binding.button.isVisible=false
+                else binding.button.isVisible=true
 
                 binding.countComView.text = count_com
+
                 Glide.with(context).load(img).into(binding.photoImageView)
+
 
                 binding.photoImageView.setOnClickListener {
                     context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
@@ -48,13 +51,13 @@ class RedditPostViewHolder(itemView: View?): RecyclerView.ViewHolder(itemView!!)
 
                 binding.button.setOnClickListener{
                     var imgName:String;
-                    var time:LocalDateTime = LocalDateTime.now()
+                    var typeString=url.substringAfterLast(".")
                     imgName = "Image + $author"
                     var request:DownloadManager.Request=DownloadManager.Request(Uri.parse(url))
                     request.setTitle("image")
                     request.setDescription("Downloading...")
 
-                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, File.separator+imgName+".jpg")
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, File.separator+imgName+"."+typeString)
                     request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
 
                     var manager:DownloadManager= context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager

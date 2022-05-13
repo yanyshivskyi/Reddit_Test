@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 class RedditPostAdapter(context: Context): RecyclerView.Adapter<RedditPostViewHolder>() {
 
     private val postlist = mutableListOf<RedditPost>()
-    private var after:String="";
-    private var before:String="";
+    private var after:String?=null;
+    private var before:String?=null;
     private var context:Context?=context;
 
     fun addPost(redditPost: RedditPost){
@@ -37,19 +37,19 @@ class RedditPostAdapter(context: Context): RecyclerView.Adapter<RedditPostViewHo
 
     override fun getItemCount() = postlist.size
 
-    fun setAfter(after: String){
+    fun setAfter(after: String?){
         this.after=after
     }
 
-    fun setBefore(before: String){
+    fun setBefore(before: String?){
         this.before=before
     }
 
-    fun getAfter(): String{
+    fun getAfter(): String?{
         return after
     }
 
-    fun getBefore(): String{
+    fun getBefore(): String?{
         return before
     }
 
